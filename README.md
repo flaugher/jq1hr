@@ -6,3 +6,5 @@ ex1 - Implement Ajax using .load
 ex2 - Implement Ajax using .ajax
 
 ex3 - Pull data from myjson.com and change dataType from 'text' to 'json'
+
+ex4 - Display JSON objects on the page

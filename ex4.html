@@ -1,0 +1,45 @@
+<div id="myBtn"><a href="">Click me</a></div>
+<div id="output"></div>
+
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+// Ensure DOM is loaded
+$(document).ready(function() {
+
+  // 'e' is the object (in this case, the a div) that raised the click event
+  $('#myBtn a').click(function(e) {
+
+    //var url = 'test.txt';
+    var url = 'https://api.myjson.com/bins/1mjba';
+    // Remove default event
+    e.preventDefault();
+    // Use Ajax instead of .load
+    $.ajax(url, {
+      url: url,
+      // GET or POST
+      type: 'GET',
+      // Type of the data being returned
+      dataType: 'json',
+      success: function(data) {
+        // Loop through JSON
+        $.each(data, function(key, index) {
+          // Different ways to display the email field
+          //console.log(key);
+          //console.log(index.email);
+          //console.log(data[key].email);
+          console.log(index['email']);
+          $('#output').append("<br/>"+ index.email);
+        });
+
+      },
+      error: function(data) {
+        console.log(data);
+        $('#output').append("<br/>Error!");
+        $('#output').append("<br/>Status code: " + data.status);
+      }
+    });
+
+  });
+
+});
+</script>
