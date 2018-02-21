@@ -6,7 +6,7 @@ Last: <input type='text' id='last'>
 
 <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-  
+
 $(document).ready(function() {
 
   $('#myBtn a').click(function(e) {
@@ -17,13 +17,16 @@ $(document).ready(function() {
       url: url,
       type: 'POST',
       // Load data to be posted
-      // POST to server values 'fname' and 'lname' read from input controls
+      // POST to server values 'fname' and 'lname' read from input controls.  The server (PHP) is expecting 'fname' and 'lname' values.
       data: {'fname': $('#first').val(), 'lname': $('#last').val()},
       // Type of the data being returned
       dataType: 'json',
       success: function(data) {
           // Display data returned from the server
           console.log(data);       
+          // Note that you can type in a new name and hit the Submit
+          // link again and the new name is displayed below the last.
+          $('#output').append('<br/>' + data.fname + ' ' + data.lname);
       },
       error: function(data) {
         console.log(data);
