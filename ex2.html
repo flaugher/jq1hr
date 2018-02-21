@@ -9,7 +9,7 @@ $(document).ready(function() {
   // 'e' is the object (in this case, the a div) that raised the click event
   $('#myBtn a').click(function(e) {
 
-    var url = 'test.txt';
+    var url = 'testr.txt';
     // Remove default event
     e.preventDefault();
     // Use Ajax instead of .load
@@ -19,7 +19,9 @@ $(document).ready(function() {
         $('#output').append("<br/>It works!");
       },
       error: function(data) {
+        console.log(data);
         $('#output').append("<br/>Error!");
+        $('#output').append("<br/>Status code: " + data.status);
       }
     });
 
