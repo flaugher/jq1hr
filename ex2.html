@@ -1,0 +1,29 @@
+<div id="myBtn"><a href="">Click me</a></div>
+<div id="output"></div>
+
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+// Ensure DOM is loaded
+$(document).ready(function() {
+
+  // 'e' is the object (in this case, the a div) that raised the click event
+  $('#myBtn a').click(function(e) {
+
+    var url = 'test.txt';
+    // Remove default event
+    e.preventDefault();
+    // Use Ajax instead of .load
+    $.ajax(url, {
+      success: function(data) {
+        console.log(data);
+        $('#output').append("<br/>It works!");
+      },
+      error: function(data) {
+        $('#output').append("<br/>Error!");
+      }
+    });
+
+  });
+
+});
+</script>
