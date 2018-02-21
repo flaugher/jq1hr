@@ -19,8 +19,14 @@ $(document).ready(function() {
       console.log(status);
       console.log(responseText);
       console.log(xhr);
+      if (xhr.status == 200) {
+        $('#output').append("<br/>It works!");
+      }
+      if (status == 'error') {
+        $('#output').append("<br/>Page not found!");
+      }
     });
-    
+
   });
 
 });
