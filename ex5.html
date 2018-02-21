@@ -1,0 +1,37 @@
+First: <input type='text' id='first'>
+Last: <input type='text' id='last'>
+
+<div id="myBtn"><a href="">Submit</a></div>
+<div id="output"></div>
+
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+  
+$(document).ready(function() {
+
+  $('#myBtn a').click(function(e) {
+
+    var url = 'response.php';
+    e.preventDefault();
+    $.ajax(url, {
+      url: url,
+      type: 'POST',
+      // Load data to be posted
+      // POST to server values 'fname' and 'lname' read from input controls
+      data: {'fname': $('#first').val(), 'lname': $('#last').val()},
+      // Type of the data being returned
+      dataType: 'json',
+      success: function(data) {
+          // Display data returned from the server
+          console.log(data);       
+      },
+      error: function(data) {
+        console.log(data);
+        $('#output').append('<br/>' + data.statusText);
+      },
+    });
+
+  });
+
+});
+</script>

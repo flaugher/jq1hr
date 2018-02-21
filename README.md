@@ -8,3 +8,5 @@ ex2 - Implement Ajax using .ajax
 ex3 - Pull data from myjson.com and change dataType from 'text' to 'json'
 
 ex4 - Display JSON objects on the page
+
+ex5 - How to POST data
