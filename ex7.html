@@ -23,12 +23,15 @@ $(document).ready(function() {
       data: {'limitTo': '[' + $('#cat').val() + ']'},
       dataType: 'json',
       success: function(data) {
-        // Loop over each array value.
+        // Loop over each array value.  If you look at the returned data, it's
+        // all contained within one JSON object that contains a 'value' array.  
+        // 'joke' field is then contained within each array element.
+        // Note that 'key' is actually the array element's index (e.g. '0', '1', // etc.). I would actually say 'function(index, value)' as that makes
+        // more sense.
         $.each(data.value, function(key, index) {
           // Display each joke in the current array element.
-          $('#output').append('<br/>' + '(' + index.id + '): ' + index.joke)
-        })
-          console.log(data);       
+          $('#output').append('<br/>' + '[' + key + ']' + '(' + index.id + '): ' + index.joke);
+        });
       },
       error: function(data) {
         console.log(data);
