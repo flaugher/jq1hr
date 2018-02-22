@@ -10,3 +10,5 @@ ex3 - Pull data from myjson.com and change dataType from 'text' to 'json'
 ex4 - Display JSON objects on the page
 
 ex5 - How to POST data
+
+ex6 - Populate Ajax 'data' using JavaScript object

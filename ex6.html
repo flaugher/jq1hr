@@ -1,0 +1,51 @@
+First: <input type='text' id='first'>
+Last: <input type='text' id='last'>
+
+<div id="myBtn"><a href="">Submit</a></div>
+<div id="output"></div>
+
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  $('#myBtn a').click(function(e) {
+
+    var url = 'response.php';
+
+    // Populate data with JavaScript object.  Now you don't have
+    // to enter data in the form; it will just use this object
+    // when you hit the Submit button.  This is like a default
+    // value.
+    var person = {'fname': 'Robert', 'lname': 'Flaugher'};
+    // We can also update this object using data from the form.
+    person.fname = $('#first').val();
+    person.lname = $('#last').val();
+
+
+    e.preventDefault();
+    $.ajax(url, {
+      url: url,
+      type: 'POST',
+      // Load data to be posted
+      // POST to server values 'fname' and 'lname' read from input controls.  The server (PHP) is expecting 'fname' and 'lname' values.
+      data: person,
+      // Type of the data being returned
+      dataType: 'json',
+      success: function(data) {
+          // Display data returned from the server
+          console.log(data);       
+          // Note that you can type in a new name and hit the Submit
+          // link again and the new name is displayed below the last.
+          $('#output').append('<br/>' + data.fname + ' ' + data.lname);
+      },
+      error: function(data) {
+        console.log(data);
+        $('#output').append('<br/>' + data.statusText);
+      },
+    });
+
+  });
+
+});
+</script>
