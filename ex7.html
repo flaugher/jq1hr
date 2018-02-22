@@ -1,0 +1,42 @@
+<!-- Add default 'nerdy' category -->
+Category: <input type='text' id='cat' value='nerdy'>
+Number of Jokes: <input type='text' id='num' value='3'>
+
+<div id="myBtn"><a href="">Submit</a></div>
+<div id="output"></div>
+
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  $('#myBtn a').click(function(e) {
+
+    var url = 'http://api.icndb.com/jokes/random/' + $('#num').val();
+    e.preventDefault();
+    $.ajax(url, {
+      url: url,
+      // API needs a 'GET' for this operation.
+      type: 'GET',
+      // Limit jokes to the specified category.
+      // 'limitTo' is an icndb API parameter when using 'random'.
+      data: {'limitTo': '[' + $('#cat').val() + ']'},
+      dataType: 'json',
+      success: function(data) {
+        // Loop over each array value.
+        $.each(data.value, function(key, index) {
+          // Display each joke in the current array element.
+          $('#output').append('<br/>' + '(' + index.id + '): ' + index.joke)
+        })
+          console.log(data);       
+      },
+      error: function(data) {
+        console.log(data);
+        $('#output').append('<br/>' + data.statusText);
+      },
+    });
+
+  });
+
+});
+</script>

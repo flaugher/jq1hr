@@ -12,3 +12,5 @@ ex4 - Display JSON objects on the page
 ex5 - How to POST data
 
 ex6 - Populate Ajax 'data' using JavaScript object
+
+ex7 - Call some online APIs (jokes DB)
